@@ -19,7 +19,7 @@ if ($_GET[id]){
        	         $query = "CREATE TABLE `". $_GET[id] ."` (
        	                   `key` int(11) AUTO_INCREMENT,
 			   `datetime` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-       	                   `data` decimal(15,1) NOT NULL,
+       	                   `data` decimal(15,2) NOT NULL,
        	                   PRIMARY KEY  (`key`)
        	                   ) ENGINE = MYISAM";
 			print $query;
