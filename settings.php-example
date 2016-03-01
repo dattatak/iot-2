@@ -1,0 +1,47 @@
+<?php
+
+$myhomedir="/var/www/html";
+
+// Database settings
+$dbserver="";
+$username="";
+$password="";
+$database="";
+$table="";
+
+$indexcolumn="key"; // Name of primary index in table
+$datetimecolumn="datetime"; // Column with format YYYY-MM-DD HH:MM:SS
+
+$indoortempcolumn="intemp";
+$indoorhumiditycolumn="inhum";
+
+$tempcolumn="outtemp";
+$humiditycolumn="outhum";
+$dewcolumn="outdewtemp";
+$chillcolumn="outchilltemp";
+$winddirectioncolumn="outwinddir";
+$windcolumn="outwindavg";
+$gustcolumn="outwindgust";
+$raincolumn="outraintotal";
+$barometercolumn="outpressure";
+
+// Barometric offset value.
+$barometeroffset="15.8";
+
+// Design settings for index.php.
+$bigfont="52";
+
+// Defaults for chart image.
+$defaultcolumn="outtemp";
+$defaulthours=24;
+$defaultwidth=400;
+$defaultheight=200;
+
+// Defaults for wind rose chart image.
+$defaultwindcolumn="outwindavg";
+$defaultwindhours=2;
+$defaultwindwidth=220;
+$defaultwindheight=220;
+$defaultwindminimumspeed=1; // Ignore windspeeds below this.
+
+?>
