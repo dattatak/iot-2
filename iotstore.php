@@ -5,11 +5,10 @@ if ($_GET[database]){$database=$_GET[database];}
 
 if ($_GET[id]){
 	if ($_GET[set]){
-
 		mysql_connect($dbserver,$username,$password);
 		@mysql_select_db($database) or die( "Unable to select database");
 		mysql_query("SET NAMES utf8");
-		mysql_query("SET CHARACTER SET utf8");	
+		mysql_query("SET CHARACTER SET utf8");
 
 		$query = "SELECT `key` FROM `" . $_GET[id] . "`";
 		print $query;
@@ -30,8 +29,6 @@ if ($_GET[id]){
 			$result = mysql_query($query);
 			print $result;
 		} else {
-
-			//$query = "INSERT INTO `" . $_GET[id] . "` (data) VALUES ('" . $_GET[set] . "')";
 			$query = "INSERT INTO `" . $_GET[id] . "` (data) SELECT '" . $_GET[set] . "' from (select data from `" . $_GET[id] . "` order by `key` desc limit 1 ) as1 where as1.data <> '" .$_GET[set] . "'";
 			print $query;
 			$result = mysql_query($query);
@@ -39,6 +36,4 @@ if ($_GET[id]){
 		}
 	}
 }
-
 ?>
-

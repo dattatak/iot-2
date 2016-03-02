@@ -56,7 +56,7 @@ $firstrow="1";
 while ($row = mysql_fetch_row($result24h)) {
 	if ($firstrow == "0") {echo ",\n";}
 	if ($firstrow == "1") {$firstrow="0";}
-        echo "          [new Date('" . str_replace(" ","T",$row[0]) . "+01:00'), {$row[1]}]";
+  echo "          [new Date('" . str_replace(" ","T",$row[0]) . "+01:00'), {$row[1]}]";
 }
 
 // Escape to HTML again.
