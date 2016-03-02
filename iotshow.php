@@ -197,7 +197,7 @@ if (isset($_GET['table'])) {
 }
 
 // Draw and go home.
-if (isset(($_GET['table'])) && ($datacolumn)) {
+if (($_GET['table']) && ($datacolumn)) {
 	echo '<div id="curve_chart" style="width: 100%; height: 500px"></div>';
 }
 
