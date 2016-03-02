@@ -16,12 +16,12 @@ if ($_GET['id']){
 		if ($_GET['set'] == 'ON') {$setmode = '100';}
                 if ($_GET['set'] == 'OFF') {$setmode = '0';}
 		if (floatval($setmode) < 2) {
-			 $final = `tdtool --off $_GET['id']; tdtool --off $_GET['id'];`;
+			 $final = `tdtool --off {$_GET['id']}; tdtool --off {$_GET['id']};`;
 			} elseif (floatval($setmode) > 98) {
-			 $final = `tdtool --on $_GET['id']; tdtool --on $_GET['id'];`;
+			 $final = `tdtool --on {$_GET['id']}; tdtool --on {$_GET['id']};`;
 			} else {
 				$value = round(floatval($_GET['set'])/100*255);
-				$final = `tdtool --dimlevel $value --dim $_GET['id']; tdtool --dimlevel $value --dim $_GET['id'];`;
+				$final = `tdtool --dimlevel $value --dim {$_GET['id']}; tdtool --dimlevel $value --dim {$_GET['id']};`;
 			}
 		system("tdtool --list-devices > $myhomedir/tddevices.txt");
 		}
