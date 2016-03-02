@@ -4,16 +4,16 @@
 include "settings-iot.php";
 
 // Do smart stuff with variables so the page won't screw up too much
-if ($_GET[database]) {
-	if ($_GET[database] != $database) {
+if ($_GET['database']) {
+	if ($_GET['database'] != $database) {
 		$datacolumn="data";
 	}
-	$database=$_GET[database];
+	$database=$_GET['database'];
 }
 
 // User wants something, OK then...
-if ($_GET[table]) {$table=$_GET[table];}
-if ($_GET[datacolumn]) {$datacolumn=$_GET[datacolumn];}
+if ($_GET['table']) {$table=$_GET['table'];}
+if ($_GET['datacolumn']) {$datacolumn=$_GET['datacolumn'];}
 
 // Try to connect to MySQL... Key word: try...
 mysql_connect($dbserver,$username,$password);
@@ -63,7 +63,7 @@ while ($row = mysql_fetch_row($result24h)) {
 ?>]);
 
         var options = {
-          title: '<?php echo str_replace("_"," ",$_GET[table]); ?>',
+          title: '<?php echo str_replace("_"," ",$_GET['table']); ?>',
           // curveType: 'function',
           // legend: { position: 'bottom' }, // Removed. I am legend. There is no other.
           legend: 'none',
@@ -172,7 +172,7 @@ if (!$result) {
 }
 
 // Ok... He has FINALLY selected a table... Make next row of the menu.
-if ($_GET[table]) {
+if ($_GET['table']) {
 	$query = "DESCRIBE `{$table}`;";
 	$result = mysql_query($query);
 	if (!$result) {
@@ -197,7 +197,7 @@ if ($_GET[table]) {
 }
 
 // Draw and go home.
-if (($_GET[table]) && ($datacolumn)) {
+if (($_GET['table']) && ($datacolumn)) {
 	echo '<div id="curve_chart" style="width: 100%; height: 500px"></div>';
 }
 
