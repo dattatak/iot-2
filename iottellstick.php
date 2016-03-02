@@ -1,7 +1,8 @@
-<?php 
+<?php
+include "settings-iot.php";
 
 if ($_GET[id]){
-	$got = trim(`cat /var/www/html/tddevices.txt | grep id=$_GET[id][[:space:]] | awk -F '=' '{print \$NF}'`);
+	$got = trim(`cat $myhomedir/tddevices.txt | grep id=$_GET[id][[:space:]] | awk -F '=' '{print \$NF}'`);
 	if ($_GET[type] == "dimmer") {
 		if ($got == 'ON') {$final = '100';}
 		if ($got == 'OFF') {$final = '0';}
@@ -22,10 +23,10 @@ if ($_GET[id]){
 				$value = round(floatval($_GET[set])/100*255);
 				$final = `tdtool --dimlevel $value --dim $_GET[id]; tdtool --dimlevel $value --dim $_GET[id];`;
 			}
-		system("tdtool --list-devices > /var/www/html/tddevices.txt");
+		system("tdtool --list-devices > $myhomedir/tddevices.txt");
 		}
 	print $final;
 	} else {
-        print "<pre>" . `cat /var/www/html/tddevices.txt` . "</pre>";
+        print "<pre>" . `cat $myhomedir/tddevices.txt` . "</pre>";
 	}
 ?>

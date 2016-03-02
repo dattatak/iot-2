@@ -1,6 +1,6 @@
 <?php
 
-$myhomedir="/var/www/html";
+$myhomedir="/var/www/html/iot";
 
 // Database settings
 $dbserver="localhost";
@@ -15,4 +15,19 @@ $datacolumn="data";
 
 $pagetitle="IoT visualiser";
 
+$indoortempcolumn="intemp";
+$indoorhumiditycolumn="inhum";
+
+$tempcolumn="outtemp";
+$humiditycolumn="outhum";
+$dewcolumn="outdewtemp";
+$chillcolumn="outchilltemp";
+$winddirectioncolumn="outwinddir";
+$windcolumn="outwindavg";
+$gustcolumn="outwindgust";
+$raincolumn="outraintotal";
+$barometercolumn="outpressure";
+
+// Barometric offset value.
+$barometeroffset="15.8";
 ?>
