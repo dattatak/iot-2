@@ -76,8 +76,8 @@ while ($row = mysql_fetch_row($result24h)) {
 	  }
         };
 
-	var formatter_date = new google.visualization.DateFormat({pattern:"yyyy-MM-dd HH:mm"});
-	formatter_date.format(continuousData, 0);
+	//var formatter_date = new google.visualization.DateFormat({pattern:"yyyy-MM-dd HH:mm"});
+	//formatter_date.format(continuousData, 0);
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
@@ -204,5 +204,3 @@ if (($_GET[table]) && ($datacolumn)) {
 // The rest is silence...
 ?>
 </body></html>
-
-
