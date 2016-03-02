@@ -15,6 +15,10 @@ $datacolumn="data";
 
 $pagetitle="IoT visualiser";
 
+// Weather Database Settings
+$weatherdatabase="";
+$weathertable="";
+
 $indoortempcolumn="intemp";
 $indoorhumiditycolumn="inhum";
 
