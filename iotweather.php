@@ -1,5 +1,5 @@
 <?php
-include "settings.php";
+include "settings-iot.php";
 
 mysql_connect($dbserver,$username,$password);
 @mysql_select_db($database) or die( "Unable to select database");
