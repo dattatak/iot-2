@@ -2,11 +2,11 @@
 include "settings-iot.php";
 
 mysql_connect($dbserver,$username,$password);
-@mysql_select_db($database) or die( "Unable to select database");
+@mysql_select_db($weatherdatabase) or die( "Unable to select database");
 mysql_query("SET NAMES utf8");
 mysql_query("SET CHARACTER SET utf8");
 
-$query="SELECT * FROM " . $table . " order by `" . $datetimecolumn . "` desc LIMIT 0,1";
+$query="SELECT * FROM " . $weathertable . " order by `" . $datetimecolumn . "` desc LIMIT 0,1";
 $result=mysql_query($query);
 
 $lasttimestamp = strtotime(mysql_result($result,0,$datetimecolumn));
@@ -18,7 +18,7 @@ if ($lasttimeseconds >= 5400) {
 } else {
         $firstdatetime = date("Y-m-d G:i:s",(time()-(86400+180)));
         $lastdatetime = date("Y-m-d G:i:s",(time()-(86400-180)));
-        $query24h="SELECT " . $raincolumn . " FROM `" . $table . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysql_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
+        $query24h="SELECT " . $raincolumn . " FROM `" . $weathertable . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysql_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
         $result24h=mysql_query($query24h);
         $i=0;
         echo mysql_result($result,$i,$indoortempcolumn) . " " . mysql_result($result,$i,$indoorhumiditycolumn) . " ";
