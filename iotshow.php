@@ -27,7 +27,7 @@ mysql_query("SET CHARACTER SET utf8");
 <head><title><?php echo $pagetitle;?></title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-			google.charts.load('current', {'packages':['corechart']});
+			google.charts.load('44', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
