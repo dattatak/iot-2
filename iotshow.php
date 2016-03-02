@@ -26,8 +26,8 @@ mysql_query("SET CHARACTER SET utf8");
 <html>
 <head><title><?php echo $pagetitle;?></title>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
+<script type="text/javascript">
+			google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -81,7 +81,7 @@ while ($row = mysql_fetch_row($result24h)) {
 				var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 				chart.draw(continuousData, options);
 			}
-		</script>
+</script>
 
 <style>
 html {
