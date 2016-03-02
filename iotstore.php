@@ -1,10 +1,10 @@
 <?php
 include "settings-iot.php";
 
-if ($_GET['database']){$database=$_GET['database'];}
+if (isset($_GET['database'])){$database=$_GET['database'];}
 
-if ($_GET['id']){
-	if ($_GET['set']){
+if (isset($_GET['id'])){
+	if (isset($_GET['set'])){
 		mysql_connect($dbserver,$username,$password);
 		@mysql_select_db($database) or die( "Unable to select database");
 		mysql_query("SET NAMES utf8");

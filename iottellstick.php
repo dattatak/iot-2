@@ -1,7 +1,7 @@
 <?php
 include "settings-iot.php";
 
-if ($_GET['id']){
+if (isset($_GET['id'])){
 	$got = trim(`cat $myhomedir/tddevices.txt | grep id={$_GET['id']}[[:space:]] | awk -F '=' '{print \$NF}'`);
 	if ($_GET['type'] == "dimmer") {
 		if ($got == 'ON') {$final = '100';}
