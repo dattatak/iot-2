@@ -3,10 +3,12 @@ include "settings-iot.php";
 
 if (isset($_GET['id'])){
 	$got = trim(`cat $myhomedir/tddevices.txt | grep id={$_GET['id']}[[:space:]] | awk -F '=' '{print \$NF}'`);
-	if ($_GET['type'] == "dimmer") {
-		if ($got == 'ON') {$final = '100';}
-		if ($got == 'OFF') {$final = '0';}
-		if ((floatval($got) > 0) && (floatval($got) < 255)) {$final = round(floatval($got)/255*100);}
+	if (isset($_GET['type'])) {
+	  if ($_GET['type'] == "dimmer") {
+		  if ($got == 'ON') {$final = '100';}
+	  	if ($got == 'OFF') {$final = '0';}
+		  if ((floatval($got) > 0) && (floatval($got) < 255)) {$final = round(floatval($got)/255*100);}
+		  } 
 		} else {
 		if ($got == 'ON') {$final = 'on';}
                 if ($got == 'OFF') {$final = 'off';}
