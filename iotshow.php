@@ -64,7 +64,7 @@ while ($row = mysql_fetch_row($result24h)) {
 
         var options = {
           title: '<?php echo str_replace("_"," ",$_GET['table']); ?>',
-          // curveType: 'function',
+          curveType: 'function',
           // legend: { position: 'bottom' }, // Removed. I am legend. There is no other.
           legend: 'none',
 					hAxis: {
