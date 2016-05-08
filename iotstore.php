@@ -12,7 +12,7 @@ if (isset($_GET['id'])){
 		$query = "SELECT `key` FROM `" . $_GET['id'] . "`";
 		print $query;
 		$result = mysqli_query($con, $query);
-		print $result;
+		# print $result;
 		if(empty($result)) {
        	         $query = "CREATE TABLE `". $_GET['id'] ."` (
        	                   `key` int(11) AUTO_INCREMENT,
@@ -22,16 +22,16 @@ if (isset($_GET['id'])){
        	                   ) ENGINE = MYISAM";
 			print $query;
 			$result = mysqli_query($con, $query);
-			print $result;
+			# print $result;
 			$query = "INSERT INTO `" . $_GET['id'] . "` (data) VALUES ('" . $_GET['set'] . "')";
 	                print $query;
 			$result = mysqli_query($con, $query);
-			print $result;
+			# print $result;
 		} else {
 			$query = "INSERT INTO `" . $_GET['id'] . "` (data) SELECT '" . $_GET['set'] . "' from (select data from `" . $_GET['id'] . "` order by `key` desc limit 1 ) as1 where as1.data <> '" .$_GET['set'] . "'";
 			print $query;
 			$result = mysqli_query($con, $query);
-			print $result;
+			# print $result;
 		}
 	}
 }

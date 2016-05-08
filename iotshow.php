@@ -3,6 +3,18 @@
 // Get default vars
 include "settings-iot.php";
 
+function mysqli_result($res,$row=0,$col=0){
+    $numrows = mysqli_num_rows($res);
+    if ($numrows && $row <= ($numrows-1) && $row >=0){
+        mysqli_data_seek($res,$row);
+        $resrow = (is_numeric($col)) ? mysqli_fetch_row($res) : mysqli_fetch_assoc($res);
+        if (isset($resrow[$col])){
+            return $resrow[$col];
+        }
+    }
+    return false;
+}
+
 // Do smart stuff with variables so the page won't screw up too much
 if (isset($_GET['database'])) {
 	if ($_GET['database'] != $database) {
@@ -47,7 +59,7 @@ $firstdatetime = date("Y-m-d G:i:s",(time()-(86400+180)));
 // Ignore this: $lastdatetime = date("Y-m-d G:i:s",(time()-(86400-180)));
 
 // Get the data already!
-$query24h="SELECT " . $datetimecolumn . ",". $datacolumn . " FROM `" . $table . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysql_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
+$query24h="SELECT " . $datetimecolumn . ",". $datacolumn . " FROM `" . $table . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysqli_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
 $result24h=mysqli_query($con, $query24h);
 
 // Dump the data out to the JahoowaScript.
