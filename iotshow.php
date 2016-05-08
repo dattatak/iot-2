@@ -16,10 +16,9 @@ if (isset($_GET['table'])) {$table=$_GET['table'];}
 if (isset($_GET['datacolumn'])) {$datacolumn=$_GET['datacolumn'];}
 
 // Try to connect to MySQL... Key word: try...
-mysql_connect($dbserver,$username,$password);
-@mysql_select_db($database) or die( "Unable to select database");
-mysql_query("SET NAMES utf8");
-mysql_query("SET CHARACTER SET utf8");
+$con = mysqli_connect($dbserver,$username,$password,$database);
+mysqli_query($con, "SET NAMES utf8");
+mysqli_query($con, "SET CHARACTER SET utf8");
 
 // Now break out to static HTML for a while...
 ?>
@@ -41,7 +40,7 @@ mysql_query("SET CHARACTER SET utf8");
 
 // Latest entry?
 $query="SELECT " . $datetimecolumn . " FROM `" . $table . "` order by `" . $datetimecolumn . "` desc LIMIT 0,1";
-$result=mysql_query($query);
+$result=mysqli_query($con, $query);
 
 // Find out what datetime is 24 hours ago, You know, to show 24h graph... duh.
 $firstdatetime = date("Y-m-d G:i:s",(time()-(86400+180)));
@@ -49,11 +48,11 @@ $firstdatetime = date("Y-m-d G:i:s",(time()-(86400+180)));
 
 // Get the data already!
 $query24h="SELECT " . $datetimecolumn . ",". $datacolumn . " FROM `" . $table . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysql_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
-$result24h=mysql_query($query24h);
+$result24h=mysqli_query($con, $query24h);
 
 // Dump the data out to the JahoowaScript.
 $firstrow="1";
-while ($row = mysql_fetch_row($result24h)) {
+while ($row = mysqli_fetch_row($result24h)) {
 	if ($firstrow == "0") {echo ",\n";}
 	if ($firstrow == "1") {$firstrow="0";}
   echo "          [new Date('" . str_replace(" ","T",$row[0]) . "+01:00'), {$row[1]}]";
@@ -146,17 +145,16 @@ li a:hover:not(.active) {
 
 // Create Header containing menu list of tables in selected, or default, database.
 $query = "show tables;";
-$result = mysql_query($query);
+$result = mysqli_query($con, $query);
 
 if (!$result) {
 	// Idiot
 	echo "DB Error, could not list tables\n";
-	echo 'MySQL Error: ' . mysql_error();
 	exit;
 } else {
 	// Britney Spears - Do somethin' (2004)
 	echo "<ul>";
-	while ($row = mysql_fetch_row($result)) {
+	while ($row = mysqli_fetch_row($result)) {
 		echo "<li>";
 		if (filter_var($row[0], FILTER_VALIDATE_IP)) {$label=gethostbyaddr($row[0]);} else {$label=$row[0];}
 		if ($row[0] == $table) {
@@ -172,14 +170,13 @@ if (!$result) {
 // Ok... He has FINALLY selected a table... Make next row of the menu.
 if (isset($_GET['table'])) {
 	$query = "DESCRIBE `{$table}`;";
-	$result = mysql_query($query);
+	$result = mysqli_query($con, $query);
 	if (!$result) {
 		echo "DB Error, could not list columns\n";
-		echo 'MySQL Error: ' . mysql_error();
 		exit;
 	} else {
 		echo "<ul class=\"level2\">";
-		while ($row = mysql_fetch_row($result)) {
+		while ($row = mysqli_fetch_row($result)) {
 			if (!(($row[0] == "key") || ($row[0] == "datetime"))) {
 				echo "<li>";
 				if ($row[0] == $datacolumn) {

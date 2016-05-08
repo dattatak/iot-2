@@ -5,14 +5,13 @@ if (isset($_GET['database'])){$database=$_GET['database'];}
 
 if (isset($_GET['id'])){
 	if (isset($_GET['set'])){
-		mysql_connect($dbserver,$username,$password);
-		@mysql_select_db($database) or die( "Unable to select database");
-		mysql_query("SET NAMES utf8");
-		mysql_query("SET CHARACTER SET utf8");
+		$con = mysqli_connect($dbserver,$username,$password,$database);
+		mysqli_query($con, "SET NAMES utf8");
+		mysqli_query($con, "SET CHARACTER SET utf8");
 
 		$query = "SELECT `key` FROM `" . $_GET['id'] . "`";
 		print $query;
-		$result = mysql_query($query);
+		$result = mysqli_query($con, $query);
 		print $result;
 		if(empty($result)) {
        	         $query = "CREATE TABLE `". $_GET['id'] ."` (
@@ -22,16 +21,16 @@ if (isset($_GET['id'])){
        	                   PRIMARY KEY  (`key`)
        	                   ) ENGINE = MYISAM";
 			print $query;
-			$result = mysql_query($query);
+			$result = mysqli_query($con, $query);
 			print $result;
 			$query = "INSERT INTO `" . $_GET['id'] . "` (data) VALUES ('" . $_GET['set'] . "')";
 	                print $query;
-			$result = mysql_query($query);
+			$result = mysqli_query($con, $query);
 			print $result;
 		} else {
 			$query = "INSERT INTO `" . $_GET['id'] . "` (data) SELECT '" . $_GET['set'] . "' from (select data from `" . $_GET['id'] . "` order by `key` desc limit 1 ) as1 where as1.data <> '" .$_GET['set'] . "'";
 			print $query;
-			$result = mysql_query($query);
+			$result = mysqli_query($con, $query);
 			print $result;
 		}
 	}
