@@ -13,7 +13,7 @@ function mysqli_result($res,$row=0,$col=0){
     return false;
 }
 
-$con = mysql_connect($dbserver,$username,$password,$weatherdatabase);
+$con = mysqli_connect($dbserver,$username,$password,$weatherdatabase);
 mysqli_query($con, "SET NAMES utf8");
 mysqli_query($con, "SET CHARACTER SET utf8");
 
