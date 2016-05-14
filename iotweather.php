@@ -29,7 +29,7 @@ if ($lasttimeseconds >= 5400) {
 } else {
         $firstdatetime = date("Y-m-d G:i:s",(time()-(86400+180)));
         $lastdatetime = date("Y-m-d G:i:s",(time()-(86400-180)));
-        $query24h="SELECT " . $raincolumn . " FROM `" . $weathertable . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysql_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
+        $query24h="SELECT " . $raincolumn . " FROM `" . $weathertable . "` where `" . $datetimecolumn . "` >= '" . $firstdatetime . "' AND `" . $datetimecolumn . "` <= '" . (mysqli_result($result,0,$datetimecolumn)) . "' order by `" . $datetimecolumn . "` asc";
         $result24h=mysqli_query($con, $query24h);
         $i=0;
         echo mysqli_result($result,$i,$indoortempcolumn) . " " . mysqli_result($result,$i,$indoorhumiditycolumn) . " ";
