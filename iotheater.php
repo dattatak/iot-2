@@ -17,7 +17,7 @@ $con = mysqli_connect($dbserver,$username,$password,$heaterdatabase);
 mysqli_query($con, "SET NAMES utf8");
 mysqli_query($con, "SET CHARACTER SET utf8");
 
-$query="SELECT " . $heatercolumn . " FROM " . $heatertable . " order by `" . $datetimecolumn . "` desc LIMIT 0,1";
+$query="SELECT * FROM " . $heatertable . " order by `" . $datetimecolumn . "` desc LIMIT 0,1";
 $result=mysqli_query($con, $query);
 
 $lasttimestamp = strtotime(mysqli_result($result,0,$datetimecolumn));
