@@ -18,6 +18,9 @@ $pagetitle="IoT visualiser";
 // Weather Database Settings
 $weatherdatabase="";
 $weathertable="";
+$heaterdatabase="";
+$heatertable="";
+$heatercolumn="";
 
 $indoortempcolumn="intemp";
 $indoorhumiditycolumn="inhum";
