@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Change paths to where myhomedir is!
+
+gpio mode 5 out
+
+while true
+do
+  gpio write 5 1
+  sleep 0.05
+  gpio write 5 0
+  sleep 0.2
+
+  for SCRIPT in /run/lighttpd/*.tellstickrun
+  do
+          if [ -f $SCRIPT -a -x $SCRIPT ]
+          then
+                  $SCRIPT
+                  sleep 0.1
+                  rm $SCRIPT
+                  tdtool --list-devices > /run/lighttpd/tddevices.txt
+                  sleep 0.1
+          fi
+  done
+done

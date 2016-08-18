@@ -1,6 +1,6 @@
 <?php
 
-$myhomedir="/var/www/html/iot";
+$myhomedir="/run/my_web_server";
 
 // Database settings
 $dbserver="localhost";
