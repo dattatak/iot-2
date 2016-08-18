@@ -14,7 +14,7 @@ if (isset($_GET['id'])){
                 if ($got == 'OFF') {$final = 'off';}
 		}
 	if (isset($_GET['set'])) {
-		$filename = $microtime . ".tellstickrun";
+		$filename = $myhomedir . "/" . $microtime . ".tellstickrun";
 		$setmode = $_GET['set'];
 		if ($_GET['set'] == 'ON') {$setmode = '100';}
                 if ($_GET['set'] == 'OFF') {$setmode = '0';}
