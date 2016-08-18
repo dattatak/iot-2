@@ -26,7 +26,7 @@ if (isset($_GET['id'])){
 				$value = round(floatval($_GET['set'])/100*255);
 				$final = `echo "tdtool --dimlevel $value --dim {$_GET['id']}" > $filename`;
 			}
-		#system("tdtool --list-devices > $myhomedir/tddevices.txt");
+		system("chmod 700 $filename");
 		}
 	print $final;
 	} else {
