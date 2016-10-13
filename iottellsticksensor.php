@@ -4,9 +4,9 @@ include "settings-iot.php";
 if (isset($_GET['id'])){
 	if (isset($_GET['type'])) {
 	  if ($_GET['type'] == "temp") {
-			$final = trim(`tdtool --list-sensors | grep id={$_GET['id']}[[:space:]] | awk -F '=' '{print \$10}'`);
+			$final = trim(`tdtool --list-sensors | grep id={$_GET['id']} | awk -F '=' '{print \$10}'`);
 		} elseif ($_GET['type'] == "hum") {
-			$final = trim(`tdtool --list-sensors | grep id={$_GET['id']}[[:space:]] | awk -F '=' '{print \$12}'`);
+			$final = trim(`tdtool --list-sensors | grep id={$_GET['id']} | awk -F '=' '{print \$12}'`);
 			}
 		}
 	print $final;
