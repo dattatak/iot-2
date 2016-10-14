@@ -11,6 +11,6 @@ if (isset($_GET['id'])){
 		}
 	print $final;
 	} else {
-        print "<pre>" . `tdtool --list-sensors` . "</pre>";
+        print "<pre>" . `cat $myhomedir/tdsensors.txt` . "</pre>";
 	}
 ?>
