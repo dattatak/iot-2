@@ -19,6 +19,7 @@ do
                   sleep 0.1
                   rm $SCRIPT
                   tdtool --list-devices > /run/lighttpd/tddevices.txt
+                  tdtool --list-sensors > /run/lighttpd/tdsensors.txt
                   sleep 0.1
           fi
   done
