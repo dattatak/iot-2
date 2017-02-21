@@ -28,7 +28,7 @@ if (isset($_GET['id'])){
 			$result = mysqli_query($con, $query);
 			# print $result;
 		} else {
-			$query = "INSERT INTO `" . $_GET['id'] . "` (data) SELECT '" . $_GET['set'] . "' from (select data from `" . $_GET['id'] . "` order by `key` desc limit 1 ) as1 where as1.data <> '" .$_GET['set'] . "' AND datetime >= DATE_SUB(NOW(),INTERVAL 1 HOUR";
+			$query = "INSERT INTO `" . $_GET['id'] . "` (data) SELECT '" . $_GET['set'] . "' from (select data from `" . $_GET['id'] . "` order by `key` desc limit 1 ) as1 where as1.data <> '" .$_GET['set'] . "' AND as1.datetime >= DATE_SUB(NOW(),INTERVAL 1 HOUR";
 			print $query;
 			$result = mysqli_query($con, $query);
 			# print $result;
