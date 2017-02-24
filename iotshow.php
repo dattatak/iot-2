@@ -75,7 +75,7 @@ while ($row = mysqli_fetch_row($result24h)) {
 
         var options = {
           title: '<?php echo str_replace("_"," ",$_GET['table']); ?>',
-          curveType: 'function',
+          // curveType: 'function', // Removed. Too much display voodoo messes up the precision.
           // legend: { position: 'bottom' }, // Removed. I am legend. There is no other.
           legend: 'none',
 					hAxis: {
